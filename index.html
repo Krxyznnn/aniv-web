@@ -19,162 +19,160 @@
             color: var(--text-color);
             overflow-x: hidden;
             text-align: center;
-            min-height: 100vh;
         }
 
-        /* Hero Section */
+        /* LOGIN PAGE STYLE */
+        #login-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to right, var(--pink-soft), var(--pink-deep));
+            display: flex; justify-content: center; align-items: center;
+            z-index: 9999; transition: 0.5s;
+        }
+        .login-card {
+            background: white; padding: 30px; border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 85%; max-width: 350px;
+        }
+        .login-card h3 { font-family: 'Dancing Script', cursive; color: #ff8a9e; font-size: 2rem; margin-bottom: 20px; }
+        .login-card input {
+            width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd;
+            border-radius: 10px; box-sizing: border-box; font-family: 'Quicksand', sans-serif;
+        }
+        .login-card button {
+            width: 100%; padding: 12px; background: #ff8a9e; color: white; border: none;
+            border-radius: 10px; cursor: pointer; font-weight: bold; margin-top: 10px;
+        }
+
+        /* MAIN CONTENT - Hidden before login */
+        #main-content { display: none; }
+
+        /* HERO & CAROUSEL (Sesuai Adaptasi Terakhir) */
         .hero {
-            min-height: 100vh;
-            display: flex; flex-direction: column;
+            height: 100vh; display: flex; flex-direction: column;
             justify-content: center; align-items: center;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(5px);
-            padding: 20px;
+            background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(5px); padding: 20px;
         }
-
-        h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: clamp(2rem, 8vw, 3.5rem);
-            margin: 0 0 10px 0;
-            animation: fadeIn 2s ease-in;
-        }
-
-        /* Music Button */
+        h1 { font-family: 'Dancing Script', cursive; font-size: clamp(2rem, 8vw, 3.5rem); margin-bottom: 10px; }
         .music-btn {
-            margin-top: 25px; padding: 12px 30px;
-            border-radius: 50px; border: none;
-            background: white; color: #ff8a9e;
-            font-weight: 600; cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            display: inline-flex; align-items: center; gap: 10px;
-            z-index: 100;
+            margin-top: 25px; padding: 12px 30px; border-radius: 50px; border: none;
+            background: white; color: #ff8a9e; font-weight: 600; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: inline-flex; align-items: center; gap: 10px;
         }
-        .music-btn.playing { background: #ff8a9e; color: white; }
-
-        /* Carousel/Slider */
-        .carousel-wrapper {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            padding: 80px 0;
+        .message-box {
+            padding: 50px 20px; background: white; max-width: 600px; margin: 50px auto;
+            border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); min-height: 180px;
         }
+        .message-box h2 { font-family: 'Dancing Script', cursive; color: #ff8a9e; font-size: 2.5rem; }
+        #typing-text::after { content: '|'; animation: blink 0.7s infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
 
-        .carousel-track {
-            display: flex;
-            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            will-change: transform;
-        }
-
+        /* Carousel Styles */
+        .carousel-wrapper { position: relative; width: 100%; overflow: hidden; padding: 60px 0; }
+        .carousel-track { display: flex; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
         .carousel-slide {
-            flex: 0 0 70%; /* Ukuran slide utama */
-            margin: 0 15%; /* Spasi agar kanan kiri terlihat */
-            transform: scale(0.85);
-            opacity: 0.5;
-            transition: all 0.6s ease;
-            background: white;
-            padding: 15px;
-            border-radius: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            flex: 0 0 70%; margin: 0 15%; transform: scale(0.85); opacity: 0.5;
+            transition: all 0.6s ease; background: white; padding: 15px; border-radius: 30px;
         }
-
-        .carousel-slide.active {
-            transform: scale(1.1); /* Efek membesar saat di tengah */
-            opacity: 1;
-            z-index: 10;
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            border-radius: 20px;
-            display: block;
-        }
-
-        .photo-desc-slider {
-            margin-top: 15px;
-            font-size: clamp(0.85rem, 2.5vw, 1rem);
-            color: #555;
-            font-weight: 500;
-            line-height: 1.4;
-        }
-
-        /* Nav Arrows */
+        .carousel-slide.active { transform: scale(1.1); opacity: 1; z-index: 10; }
+        .carousel-slide img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 20px; }
         .nav-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
-            width: 45px; height: 45px;
-            background: white; border: none; border-radius: 50%;
-            color: #ff8a9e; font-size: 20px; font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            cursor: pointer; z-index: 50; transition: 0.3s;
+            width: 45px; height: 45px; background: white; border: none; border-radius: 50%;
+            color: #ff8a9e; font-size: 20px; cursor: pointer; z-index: 50;
         }
-        .prev { left: 15px; }
-        .next { right: 15px; }
-
-        /* Dots */
-        .carousel-dots {
-            display: flex; justify-content: center;
-            gap: 10px; margin-top: 30px;
-        }
-        .dot {
-            width: 10px; height: 10px; background: rgba(255,255,255,0.5);
-            border-radius: 50%; cursor: pointer; transition: 0.3s;
-        }
+        .prev { left: 15px; } .next { right: 15px; }
+        .dots-container { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+        .dot { width: 10px; height: 10px; background: rgba(255,255,255,0.5); border-radius: 50%; cursor: pointer; }
         .dot.active { background: white; width: 25px; border-radius: 10px; }
-
-        /* Hearts */
-        .heart {
-            position: fixed; top: -10px; font-size: 20px;
-            z-index: 1000; animation: fall linear forwards; pointer-events: none;
-        }
+        .heart { position: fixed; top: -10px; font-size: 20px; z-index: 1000; animation: fall linear forwards; pointer-events: none; }
         @keyframes fall { to { transform: translateY(105vh) rotate(360deg); opacity: 0; } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        footer { padding: 50px; opacity: 0.7; font-size: 0.8rem; }
+        footer { padding: 40px; opacity: 0.7; }
     </style>
 </head>
 <body>
 
-    <audio id="myAudio" loop>
-        <source src="Masa ini, Nanti, dan Masa Indah Lainnya_musicaldown.com_1770567217.mp3" type="audio/mpeg">
-    </audio>
-
-    <section class="hero">
-        <h1>Happy Anniversary! ❤️</h1>
-        <p>Theo, Leo & Muhammad Rafky</p>
-        <button class="music-btn" id="playBtn">🎵 Play Our Song</button>
-        <div style="margin-top: 25px; font-size: 1.3rem;">✨ 365 Days & Counting ✨</div>
-    </section>
-
-    <div class="carousel-wrapper">
-        <div class="carousel-track" id="track">
-            <div class="carousel-slide active"><img src="foto1.jpg"><div class="photo-desc-slider">Inget gak ini pas pertama kalinya aku nemenin kamu? aku bangga banget tau!</div></div>
-            <div class="carousel-slide"><img src="foto2.jpg"><div class="photo-desc-slider">Muka kamu lucu banget di sini, apalagi pas tampil lomba, gemes!</div></div>
-            <div class="carousel-slide"><img src="foto3.jpg"><div class="photo-desc-slider">Moment kita ngelupain kejadian di klender ituu, lucu yaa??</div></div>
-            <div class="carousel-slide"><img src="foto4.jpg"><div class="photo-desc-slider">Terima kasih ya sudah sabar sama aku ❤️</div></div>
-            <div class="carousel-slide"><img src="foto5.jpg"><div class="photo-desc-slider">Senyum kamu favorit aku selamanya.</div></div>
-            <div class="carousel-slide"><img src="foto6.jpg"><div class="photo-desc-slider">Setiap detik bersamamu itu berharga.</div></div>
-            <div class="carousel-slide"><img src="foto7.jpg"><div class="photo-desc-slider">I'll stay by your side, no matter what.</div></div>
-            <div class="carousel-slide"><img src="foto8.jpg"><div class="photo-desc-slider">Hehe, inget gak kita ketawa gara-gara ini?</div></div>
-            <div class="carousel-slide"><img src="foto9.jpg"><div class="photo-desc-slider">365 hari yang luar biasa bersamamu.</div></div>
-            <div class="carousel-slide"><img src="foto10.jpg"><div class="photo-desc-slider">Happy 1st Anniversary, Sayang! ❤️</div></div>
+    <div id="login-overlay">
+        <div class="login-card">
+            <h3>Who are you? ❤️</h3>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="checkLogin()">Open My Heart</button>
+            <p id="login-error" style="color: #ff4d4d; font-size: 0.8rem; margin-top: 10px; display: none;">Oops! Salah tuh kuncinya.</p>
         </div>
-
-        <button class="nav-btn prev" onclick="moveSlide(-1)">&#10094;</button>
-        <button class="nav-btn next" onclick="moveSlide(1)">&#10095;</button>
-        <div class="carousel-dots" id="dots"></div>
     </div>
 
-    <footer>Dibuat dengan ❤️ untukmu</footer>
+    <div id="main-content">
+        <audio id="myAudio" loop>
+            <source src="Masa ini, Nanti, dan Masa Indah Lainnya_musicaldown.com_1770567217.mp3" type="audio/mpeg">
+        </audio>
+
+        <section class="hero">
+            <h1>Happy Anniversary Theo, Leo & Muhammad Rafky!</h1>
+            <p>Setiap hari bersamamu adalah anugerah terindah buat aku. ❤️</p>
+            <button class="music-btn" id="playBtn">🎵 Play Our Song</button>
+            <div style="margin-top: 25px; font-size: 1.8rem;">✨ 365 Days & Counting ✨</div>
+        </section>
+
+        <div class="message-box">
+            <h2>For you, My Love.</h2>
+            <p id="typing-text"></p>
+        </div>
+
+        <div class="carousel-wrapper">
+            <div class="carousel-track" id="track">
+                <div class="carousel-slide active"><img src="foto1.jpg"><div class="photo-desc-slider">Inget gak ini pas pertama kalinya aku nemenin kamu jadi pasukan demos? aku bangga banget tau!</div></div>
+                <div class="carousel-slide"><img src="foto2.jpg"><div class="photo-desc-slider">Muka kamu lucu banget di sini, apalagi pas tampil lomba, gemes! ❤️</div></div>
+                <div class="carousel-slide"><img src="foto3.jpg"><div class="photo-desc-slider">inget suasana inii? moment kita sama sama ngelupain kejadian di klender ituu ehehe, lucu yaa??</div></div>
+                <div class="carousel-slide"><img src="foto4.jpg"><div class="photo-desc-slider">Our First Blok M date bangett ahahaha</div></div>
+                <div class="carousel-slide"><img src="foto5.jpg"><div class="photo-desc-slider">Our First Movie date with ur friend</div></div>
+                <div class="carousel-slide"><img src="foto6.jpg"><div class="photo-desc-slider">Mungkin menurut kamu semesta aku orang lain, tapi faktanya itu kamu.</div></div>
+                <div class="carousel-slide"><img src="foto7.jpg"><div class="photo-desc-slider">Our Demos Moment dan aku sebagai Aspel HAHAHA</div></div>
+                <div class="carousel-slide"><img src="foto8.jpg"><div class="photo-desc-slider">Hehehe, akhirnya kesampean kemauan aku kita couple smartwatch ❤️</div></div>
+                <div class="carousel-slide"><img src="foto9.jpg"><div class="photo-desc-slider">Terimakasih sudah bertahan hidup sejauh ini. Aku bangga banget sama kamu sayang! ❤️</div></div>
+                <div class="carousel-slide"><img src="foto10.jpg"><div class="photo-desc-slider">Happy 1st Anniversary! I love you more than words can say. ❤️</div></div>
+            </div>
+            <button class="nav-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="nav-btn next" onclick="moveSlide(1)">&#10095;</button>
+            <div class="dots-container" id="dots"></div>
+        </div>
+        <footer>Dibuat dengan ❤️ untukmu</footer>
+    </div>
 
     <script>
+        // LOGIN LOGIC
+        function checkLogin() {
+            const user = document.getElementById("username").value;
+            const pass = document.getElementById("password").value;
+            const error = document.getElementById("login-error");
+
+            if (user === "aniv" && pass === "loveyou") {
+                document.getElementById("login-overlay").style.display = "none";
+                document.getElementById("main-content").style.display = "block";
+                updateSlider(); // Init slider posisi
+                typeWriter();   // Mulai ngetik setelah login
+            } else {
+                error.style.display = "block";
+            }
+        }
+
+        // TYPEWRITER LOGIC
+        const message = "Terima kasih sudah bertahan sejauh ini. Kamu adalah alasan aku tersenyum setiap pagi. Website ini emang kecil, tapi cintaku ke kamu tuhh gede banget!. terimakasih juga sudah bertahan hidup sejauh ini. aku bangga banget sama kamuu sayang";
+        const typingText = document.getElementById("typing-text");
+        let i = 0;
+
+        function typeWriter() {
+            if (i < message.length) {
+                typingText.innerHTML += message.charAt(i);
+                i++;
+                setTimeout(typeWriter, 60); // Kecepatan ngetik (60ms)
+            }
+        }
+
+        // SLIDER LOGIC
         const track = document.getElementById('track');
         const slides = Array.from(document.querySelectorAll('.carousel-slide'));
         const dotsContainer = document.getElementById('dots');
         let index = 0;
 
-        // Generate Dots
         slides.forEach((_, i) => {
             const dot = document.createElement('div');
             dot.classList.add('dot');
@@ -184,54 +182,33 @@
         });
 
         function updateSlider() {
-            // Perhitungan geser: Lebar slide + margin
             const slideWidth = slides[0].offsetWidth + (window.innerWidth * 0.3); 
             track.style.transform = `translateX(${-index * slideWidth}px)`;
-            
             slides.forEach((s, i) => s.classList.toggle('active', i === index));
             document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === index));
         }
 
-        function moveSlide(step) {
-            index = (index + step + slides.length) % slides.length;
-            updateSlider();
-        }
+        function moveSlide(step) { index = (index + step + slides.length) % slides.length; updateSlider(); }
+        function goToSlide(i) { index = i; updateSlider(); }
 
-        function goToSlide(i) {
-            index = i;
-            updateSlider();
-        }
-
-        // Music Logic
+        // MUSIC & HEARTS
         const audio = document.getElementById("myAudio");
         const playBtn = document.getElementById("playBtn");
         playBtn.onclick = () => {
-            if (audio.paused) {
-                audio.play();
-                playBtn.innerHTML = "⏸️ Pause Music";
-                playBtn.classList.add("playing");
-            } else {
-                audio.pause();
-                playBtn.innerHTML = "🎵 Play Our Song";
-                playBtn.classList.remove("playing");
-            }
+            if (audio.paused) { audio.play(); playBtn.innerHTML = "⏸️ Pause"; } 
+            else { audio.pause(); playBtn.innerHTML = "🎵 Play Our Song"; }
         };
 
-        // Heart Effect
         setInterval(() => {
             const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '❤️';
+            heart.classList.add('heart'); heart.innerHTML = '❤️';
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDuration = Math.random() * 3 + 2 + 's';
-            heart.style.color = "white";
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), 5000);
         }, 400);
 
         window.addEventListener('resize', updateSlider);
-        // Jalankan sekali saat load agar posisi awal pas
-        window.onload = updateSlider;
     </script>
 </body>
 </html>
